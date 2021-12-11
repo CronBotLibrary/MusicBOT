@@ -12,11 +12,13 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.lang.reflect.Method;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @Category.Declaration(name = "General Command", prefix = "", description = "全般的なコマンド")
 public class GeneralCategory extends Category {
 
-    @Command(name = "ping", description = "応答速度を計測します。")
+    @Command(value = "ping", description = "応答速度を計測します。")
     public void ping(MessageReceivedEvent e){
         e.getMessage().reply("Pong!").queue((Message message) -> { // the type for "result" is the T in RestAction<T>
             long ping = e.getMessage().getTimeCreated().until(message.getTimeCreated(), ChronoUnit.MILLIS);
@@ -24,7 +26,7 @@ public class GeneralCategory extends Category {
         });
     }
 
-    @Command(name = "help", description = "ヘルプを表示します。")
+    @Command(value = "help", description = "ヘルプを表示します。")
     public void help(MessageReceivedEvent e){
         MessageBuilder messageBuilder = new MessageBuilder();
 
@@ -37,9 +39,24 @@ public class GeneralCategory extends Category {
                 Command anno = method.getAnnotation(Command.class);
                 Alias alias = method.getAnnotation(Alias.class);
                 if (anno != null) {
-                    messageBuilder.append("`" + Main.defaultPrefix + anno.name() + "` - ");
+                    messageBuilder.append("`" + Main.defaultPrefix + anno.value() + "` - ");
+                    if (alias != null) {
+                        messageBuilder.append("`");
+                        Boolean isFirst = true;
+                        for (String s : alias.value()) {
+                            if (isFirst){
+                                isFirst = false;
+                            } else {
+                                messageBuilder.append(", ");
+                            }
+                            messageBuilder.append(Main.defaultPrefix).append(s);
+                        }
+                        messageBuilder.append("` - ");
+                    }
+                    messageBuilder.append("`");
+
                     messageBuilder.append(anno.description());
-                    messageBuilder.append("\n");
+                    messageBuilder.append("`\n");
                 }
             }
             messageBuilder.append("\n");

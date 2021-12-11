@@ -1,5 +1,6 @@
 package jp.cron.template.commands;
 
+import jp.cron.jdalib.command.Alias;
 import jp.cron.jdalib.command.Command;
 import jp.cron.jdalib.command.entity.Category;
 import jp.cron.template.Main;
@@ -22,79 +23,88 @@ public class MusicCategory extends Category {
     }
 
 
-    @Command(name = "play", description = "キーワード・URLまたは添付ファイルから音楽を再生します。")
+    @Command(value = "play", description = "キーワード・URLまたは添付ファイルから音楽を再生します。")
+    @Alias({"p"})
     public void play(MessageReceivedEvent e){
         PlayCommand.invoke(e);
     }
 
-    @Command(name = "nowplaying", description = "現在再生中の音楽を表示します。")
+    @Command(value = "nowplaying", description = "現在再生中の音楽を表示します。")
+    @Alias({"np"})
     public void nowplaying(MessageReceivedEvent e){
         NowPlayingEvent.invoke(e);
     }
 
-    @Command(name = "queue", description = "再生待ちの音楽を一覧表示します。")
+    @Command(value = "queue", description = "再生待ちの音楽を一覧表示します。")
+    @Alias({"q"})
     public void queue(MessageReceivedEvent e){
         QueueCommand.invoke(e);
     }
 
-    @Command(name = "skip", description = "現在再生中の曲を飛ばします。")
+    @Command(value = "skip", description = "現在再生中の曲を飛ばします。")
+    @Alias({"s"})
     public void skip(MessageReceivedEvent e){
         SkipCommand.execute(e);
     }
 
-    @Command(name = "loop", description = "再生中の曲のみを、または再生待ちの音楽全てを繰り返します。")
+    @Command(value = "loop", description = "再生中の曲のみを、または再生待ちの音楽全てを繰り返します。")
+    @Alias({"repeat", "l"})
     public void loop(MessageReceivedEvent e){
         LoopCommand.execute(e);
     }
 
-    @Command(name = "volume", description = "再生する音量を設定します。")
+    @Command(value = "volume", description = "再生する音量を設定します。")
+    @Alias({"vol"})
     public void volume(MessageReceivedEvent e){
         VolumeCommand.execute(e);
     }
 
-    @Command(name = "jump", description = "Comming soon... ( 開発中 )")
+    @Command(value = "jump", description = "Comming soon... ( 開発中 )")
     public void jump(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "remove", description = "Comming soon... ( 開発中 )")
+    @Command(value = "remove", description = "Comming soon... ( 開発中 )")
+    @Alias({"delete"})
     public void remove(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "search", description = "Comming soon... ( 開発中 )")
+    @Command(value = "search", description = "Comming soon... ( 開発中 )")
+    @Alias({"sh"})
     public void search(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "shuffle", description = "Comming soon... ( 開発中 )")
+    @Command(value = "shuffle", description = "Comming soon... ( 開発中 )")
     public void shuffle(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "pause", description = "Comming soon... ( 開発中 )")
+    @Command(value = "pause", description = "Comming soon... ( 開発中 )")
     public void pause(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "stop", description = "Comming soon... ( 開発中 )")
+    @Command(value = "stop", description = "Comming soon... ( 開発中 )")
     public void stop(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "join", description = "Comming soon... ( 開発中 )")
+    @Command(value = "join", description = "Comming soon... ( 開発中 )")
+    @Alias({"connect"})
     public void join(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command
     }
 
-    @Command(name = "disconnect", description = "Comming soon... ( 開発中 )")
+    @Command(value = "disconnect", description = "Comming soon... ( 開発中 )")
     public void disconnect(MessageReceivedEvent e){
         e.getMessage().reply("Comming soon...").queue();
         // TODO: jump command

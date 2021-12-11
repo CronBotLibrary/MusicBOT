@@ -67,7 +67,6 @@ public class TrackScheduler extends AudioEventAdapter {
         if (track == null){
             Long time = new Date().getTime();
             lastTime = time;
-            System.out.println(time);
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
